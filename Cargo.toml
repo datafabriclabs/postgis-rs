@@ -1,0 +1,17 @@
+[package]
+name = "postgis-rs"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+members = ["postgis-sys"]
+
+
+[dependencies]
+postgis-sys = { path = "./postgis-sys" }
+lwgeom.workspace = true
+lwgeom-sys.workspace = true
+
+[workspace.dependencies]
+lwgeom-sys = { path = "../lwgeom/lwgeom-sys", version = "*" }
+lwgeom = { path = "../lwgeom", version = "*" }

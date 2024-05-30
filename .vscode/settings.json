@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "cstdlib": "c",
+        "mvt.h": "c",
+        "liblwgeom.h": "c",
+        "lwgeom_log.h": "c",
+        "postgis_config.h": "c"
+    }
+    "C_Cpp.default.includePath": [
+        "/usr/include/postgresql/16/server"
+    ]
+}
