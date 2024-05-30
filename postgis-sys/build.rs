@@ -10,10 +10,6 @@ fn main() {
 
     let _libpq_lib = pkg_config::Config::new().probe("libpq").unwrap();
 
-    println!("cargo:rustc-link-lib=static=pgcommon");
-    println!("cargo:rustc-link-lib=static=pgcommon_shlib");
-    println!("cargo:rustc-link-search=native=/usr/lib/postgresql/16/lib/");
-
     let src = PathBuf::from(std::env::var_os("CARGO_MANIFEST_DIR").unwrap());
 
     assert!(Command::new("perl")
