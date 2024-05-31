@@ -10,7 +10,6 @@ extern "C" {
 
 extern "C" {
     fn foo();
-
 }
 
 #[cfg(test)]
