@@ -23,12 +23,6 @@ fn main() {
         .status()
         .expect("should run ok")
         .success());
-    assert!(Command::new("sh")
-        .current_dir(src.join("postgis"))
-        .arg("config.status")
-        .status()
-        .expect("should run ok")
-        .success());
 
     // run autogen
     assert!(Command::new("sh")
@@ -51,6 +45,20 @@ fn main() {
         .status()
         .expect("should run ok")
         .success());
+
+    assert!(Command::new("sh")
+        .current_dir(src.join("postgis"))
+        .arg("config.status")
+        .status()
+        .expect("should run ok")
+        .success());
+
+    assert!(Command::new("/usr/bin/make")
+        .current_dir(src.join("postgis").join("postgis"))
+        .status()
+        .expect("should run ok")
+        .success());
+
     // for build c files
     let mut builder = cc::Build::new();
 
