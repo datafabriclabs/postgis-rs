@@ -13,5 +13,5 @@ lwgeom.workspace = true
 lwgeom-sys.workspace = true
 
 [workspace.dependencies]
-lwgeom-sys = { git = "https://github.com/xhwhis/lwgeom" }
-lwgeom = { git = "https://github.com/xhwhis/lwgeom" }
+lwgeom = { version = "0.0.8" }
+lwgeom-sys = { version = "0.0.8" }

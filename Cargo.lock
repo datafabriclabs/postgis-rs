@@ -154,8 +154,9 @@ checksum = "90ed8c1e510134f979dbc4f070f87d4313098b704861a105fe34231c70a3901c"
 
 [[package]]
 name = "lwgeom"
-version = "0.0.7"
-source = "git+https://github.com/xhwhis/lwgeom#56fcb93f428808933bc23e99ada7135600fee6bf"
+version = "0.0.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e52335f65b3553fd0b9ab03017ce3d3c37cb692ef9881efe008f9994b6338c0d"
 dependencies = [
  "libc",
  "lwgeom-sys",
@@ -164,8 +165,9 @@ dependencies = [
 
 [[package]]
 name = "lwgeom-sys"
-version = "0.0.7"
-source = "git+https://github.com/xhwhis/lwgeom#56fcb93f428808933bc23e99ada7135600fee6bf"
+version = "0.0.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "299a4f73a0c12369c64259d51f2a1a6985e1df33d842740073b3262040511c24"
 dependencies = [
  "bindgen",
  "glob",
