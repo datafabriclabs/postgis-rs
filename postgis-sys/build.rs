@@ -4,6 +4,11 @@ use std::{
 };
 
 fn main() {
+    assert!(Command::new("git")
+        .args(&["submodule", "update", "--init", "--recursive"])
+        .status()
+        .is_ok());
+
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-changed=postgis/postgis/mvt.c");
     println!("cargo:rerun-if-changed=foo.c");
