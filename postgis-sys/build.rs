@@ -71,10 +71,18 @@ fn main() {
 
     let add_include = |builder: &mut cc::Build| {
         // yuyang:very stupid way to locate a header file
-        let postgres_header_file = "/usr/include/postgresql/16/server";
-        assert!(Path::new(postgres_header_file).exists());
 
-        builder.include(postgres_header_file);
+        let postgres_header_file16 = "/usr/include/postgresql/16/server";
+        let postgres_header_file15 = "/usr/include/postgresql/15/server";
+
+        let postgres_header = if Path::new(postgres_header_file16).exists() {
+            postgres_header_file16
+        } else {
+            postgres_header_file15
+        };
+        assert!(Path::new(postgres_header).exists());
+
+        builder.include(postgres_header);
         builder.include(src.join("postgis/liblwgeom"));
         builder.include(src.join("postgis/libpgcommon"));
         builder.include(src.join("postgis/deps/wagyu"));
