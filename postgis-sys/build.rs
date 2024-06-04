@@ -56,15 +56,7 @@ fn main() {
     c.current_dir(src.join("postgis/postgis"));
     c.arg("vector_tile.pb-c.h");
 
-    let output = c.output().unwrap();
-    if output.status.success() {
-        let stdout = String::from_utf8_lossy(&output.stdout);
-        println!("Standard output:\n{}", stdout);
-    } else {
-        let stderr = String::from_utf8_lossy(&output.stderr);
-        println!("Error output:\n{}\n\n\n", stderr);
-    }
-    assert!(output.status.success());
+    assert!(c.status().unwrap().success());
 
     // for build c files
     let mut builder = cc::Build::new();
