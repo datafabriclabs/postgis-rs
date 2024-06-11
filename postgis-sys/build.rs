@@ -63,16 +63,19 @@ fn main() {
 
     let add_include = |builder: &mut cc::Build| {
         // yuyang:very stupid way to locate a header file
+        let postgres_headers = vec![
+            "/usr/include/postgresql/16/server",
+            "/usr/include/postgresql/15/server",
+            "/usr/include/postgressql",
+        ];
 
-        let postgres_header_file16 = "/usr/include/postgresql/16/server";
-        let postgres_header_file15 = "/usr/include/postgresql/15/server";
-
-        let postgres_header = if Path::new(postgres_header_file16).exists() {
-            postgres_header_file16
-        } else {
-            postgres_header_file15
-        };
-        assert!(Path::new(postgres_header).exists());
+        let mut postgres_header = Option::None;
+        for h in postgres_headers.iter() {
+            if Path::new(*h).exists() {
+                postgres_header = Some(Path::new(*h));
+            }
+        }
+        let postgres_header = postgres_header.expect("postgres dev must installed");
 
         builder.include(postgres_header);
         builder.include(src.join("postgis/liblwgeom"));
