@@ -73,6 +73,7 @@ fn main() {
         for h in postgres_headers.iter() {
             if Path::new(*h).exists() {
                 postgres_header = Some(Path::new(*h));
+                break;
             }
         }
         let postgres_header = postgres_header.expect("postgres dev must installed");
