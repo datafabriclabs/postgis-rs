@@ -13,8 +13,6 @@ fn main() {
     println!("cargo:rerun-if-changed=postgis/postgis/mvt.c");
     println!("cargo:rerun-if-changed=foo.c");
 
-    let _libpq_lib = pkg_config::Config::new().probe("libpq").unwrap();
-
     let src = PathBuf::from(std::env::var_os("CARGO_MANIFEST_DIR").unwrap());
 
     assert!(Command::new("perl")
