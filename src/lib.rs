@@ -6,7 +6,7 @@ pub fn mvt_geom(
     extend: u32,
     buffer: u32,
     clip_geom: bool,
-) -> lwgeom::LWGeom {
+) -> Result<lwgeom::LWGeom, lwgeom::LWGeomError> {
     let x = unsafe {
         raw_mvt_geom(
             geom.as_ptr(),
@@ -16,7 +16,11 @@ pub fn mvt_geom(
             clip_geom,
         )
     };
-    lwgeom::LWGeom::from_ptr(x)
+    if x.is_null() {
+        Err(lwgeom::LWGeomError::NullPtrError)
+    } else {
+        Ok(lwgeom::LWGeom::from_ptr(x))
+    }
 }
 
 #[cfg(test)]
@@ -43,7 +47,8 @@ mod tests {
             4096,
             0,
             false,
-        );
+        )
+        .unwrap();
         assert_eq!(
             "MULTIPOLYGON(((5 4096,10 4091,10 4096,5 4096)),((5 4096,0 4101,0 4096,5 4096)))",
             x.as_ewkt(None).unwrap()
